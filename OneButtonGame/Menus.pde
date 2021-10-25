@@ -5,10 +5,7 @@ class StartPage {
 
   StartPage() {
   }
-  void screen() {
-    //fill(0);
-    //rect(100, 100, width/2, height/2);
-  }
+
   void display() {
     fill(255);
     font = createFont("pixel.ttf", 100);
@@ -29,7 +26,7 @@ class GameOverPage {
 
   GameOverPage() {
   }
-
+  
   void display() {
     fill(255);
     //messagefont = createFont("Arial", 25);

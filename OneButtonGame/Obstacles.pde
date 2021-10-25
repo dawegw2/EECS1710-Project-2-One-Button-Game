@@ -1,5 +1,6 @@
 class Obstacle {
   PVector position;
+  
   float moveSpeed = 15;
   float yMargin = 100;
   float val;
@@ -7,6 +8,7 @@ class Obstacle {
   float x = 75;
   float w;
   float h = 50;
+  
   boolean inFrame = true;
   boolean collision = false;
   boolean left; 
@@ -18,7 +20,6 @@ class Obstacle {
 
   void init() {
     //determines the x value of each obstacle that is being spawned
-
     val = random(1);
     if (val > 0.5) {
       x = width - 75;
@@ -28,7 +29,6 @@ class Obstacle {
       left = true;
     }
     //println(left);
-
 
     w = int(random(100, 250));
     position = new PVector(x, y);

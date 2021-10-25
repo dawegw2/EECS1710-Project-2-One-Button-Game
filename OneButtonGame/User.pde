@@ -9,20 +9,17 @@ class User {
 
   int numFrames = 11;
   int f;
-  float movementSpeed = 0.3;
-  boolean isRight = false;
   int val = 0;
-  boolean alive;
-
+  
+  float movementSpeed = 0.3;
   float w = 50;
   float h = 50;
   float xConstant = 74;
-
-  boolean touchesLeftWall;
-  boolean touchesRightWall;
-
   float rot = 0;
   float rotInc = 10;
+  
+  boolean isRight = false;
+  boolean alive;
 
   User() {
     playerGif = new PImage[numFrames];
@@ -58,26 +55,25 @@ class User {
         position.y += 50;
       }
     }
-
-
+    
+    //image trails
     for (int i = 0; i < history.size(); i++) {
       PVector current = history.get(i);
-      //fill(220, 220, 220, i * 5);
       tint(255, i * 10);
-      //noStroke();
-      //rect(current.x, current.y, trailSize, trailSize);
       image(trail, current.x, current.y, i*3, i*3);
     }
-
+    
     pushMatrix();
     translate(position.x, position.y);
     rotate(radians(rot)); //rotates the box
     noTint();
     image(playerGif[f], 0, 0);
+    //changes player image when player is dead
     if (!alive) {
       image(playerdead, 0, 0);
     }
     popMatrix();
+    
     if (frameCount % 5 == 0) {
       f = f + 1;
     }
@@ -111,11 +107,12 @@ class User {
     }
   }
 
-  void press() {
-    if (!isRight) { // TODO && touchesLeftWall  
-      moveRight();      
+  //moves player
+  void move() {
+    if (!isRight) {
+      moveRight();
     } 
-    if (isRight) { // TODO && touchesRightWall
+    if (isRight) { 
       moveLeft();
     }
   }

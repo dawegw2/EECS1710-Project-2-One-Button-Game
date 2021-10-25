@@ -11,10 +11,7 @@ ArrayList<Obstacle> obs;
 ArrayList<Star> stars;
 
 int markTime = 0;
-int obsInterval = 1000;
-int enemyInterval = 4000;
-int speedInterval = 5000;
-int powerInterval = 4000;
+int obsInterval = 1000; //obstacle spawn timer
 
 int currentScore = 0;
 int numStars = 20;
@@ -43,9 +40,8 @@ void setup() {
   //song
   fullSong = new SoundFile(this, "sound/Synthwaveattempt.wav");
   fullSong.jump(21.33);
-
+  //soound effects
   gameOverSound = new SoundFile(this, "sound/gameover.wav");
-
   jump1 = new SoundFile(this, "sound/jump1.wav");
   jump2 = new SoundFile(this, "sound/jump2.wav");
 
@@ -56,10 +52,7 @@ void setup() {
 }
 
 void draw() {
-  background(127);
-
   backdrop.draw();
-
   int s = second();
   int t = millis();
   //println(t);
@@ -80,7 +73,8 @@ void draw() {
     if (obsInterval < 300) {
       star.ySpeed = 1.5;
     }
-
+    
+    //when star leaves frame, it is removed from the arraylist
     if (!star.inFrame()) {
       stars.remove(i);
     }
@@ -111,14 +105,17 @@ void draw() {
 
   println(obsInterval + "," + t);
 
+  //obstacles
   for (Obstacle obstacle : obs) {
     obstacle.run();
-
+    
+    //debugger
+    /*
     if (debug) {
       stroke(0, 255, 0);
       line(obstacle.position.x, obstacle.position.y, player.position.x, player.position.y);
     }
-
+    */
     float distX = abs((player.position.x + player.w/2) - (obstacle.position.x + obstacle.w/2));
     float distY = abs((player.position.y + player.h/2) - (obstacle.position.y + + player.h/2));
     float halfWidth = (player.w/2) + (obstacle.w/2);
@@ -157,7 +154,7 @@ void draw() {
   }
   //println(obs.size());
 
-
+  //player
   player.run();
 
   //wall parallax
@@ -167,7 +164,7 @@ void draw() {
   rightWall.run();
   popMatrix();
 
-  //score counter when game is running
+  //shows score counter when game is running
   if (gameRunning) {
     fill(0); //score color
     textSize(50);
@@ -188,7 +185,7 @@ void draw() {
 void keyPressed() {
   if (gameRunning) {
     if (key == ' ') {
-      player.press(); //moves player
+      player.move(); //moves player
       if (!player.isRight) {
         jump1.play();
       } else {
@@ -196,12 +193,15 @@ void keyPressed() {
       }
     }
   }
+  /*
+  //debugger controls
   if (key == 'b') {
     debug = true;
   }
   if (key == 'v') {
     debug = false;
   }
+  */
 }
 
 void mousePressed() {
@@ -219,9 +219,6 @@ void mousePressed() {
     markTime = 0;
 
     obsInterval = 1000;
-    enemyInterval = 4000;
-    speedInterval = 5000;
-    powerInterval = 4000;
 
     numStars = 20;
     currentScore = 0;

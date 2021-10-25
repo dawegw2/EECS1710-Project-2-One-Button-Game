@@ -1,7 +1,8 @@
 class Backdrop {
   PImage backdrop;
   int val;
-
+  
+  //random integer from 0 - 2 determines the background of the game
   Backdrop(int _val) {
     //println(_val);
     val = _val;

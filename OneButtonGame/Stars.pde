@@ -1,12 +1,13 @@
 class Star {
   PImage stars;
   PVector position;
+  
   float starSize;
   float x;
   float y;
   float ySpeed = 0.5;
-  boolean star1;
   float val;
+  boolean star1; 
 
   Star() {
     val = random(1);
@@ -27,25 +28,19 @@ class Star {
     noStroke();
     fill(255, random(100, 150)); 
     tint(255, random(50, 150));
-    if (star1) {
+    if (star1) { //draws basic square star
       rect(position.x, position.y, starSize, starSize);
-    } else {
+    } else { //draws second star
       image(stars, position.x, position.y);
     }
   }
 
-  void newStars() {
-    y = random(-800, 0);
-  }
-
-  void moveStar() {
+  //moves stars down
+  void update() {
     position.y += ySpeed;
   }
-
-  void update() {
-    moveStar();
-  }
-
+  
+  //checks if star is still on screen and returns true when star leaves the screen
   boolean inFrame() {
     if (position.y > height) {
       return false;
