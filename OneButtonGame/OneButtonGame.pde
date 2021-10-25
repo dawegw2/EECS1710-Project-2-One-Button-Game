@@ -1,13 +1,16 @@
+import processing.sound.*;
+SoundFile fullSong;
+
 PFont font;
-PImage backdrop;
 User player;
 StartPage startScreen;
 GameOverPage endScreen;
+Walls leftWall, rightWall;
+Backdrop backdrop;
 ArrayList<Obstacle> obs;
 ArrayList<Star> stars;
 
 int markTime = 0;
-
 int obsInterval = 1000;
 int enemyInterval = 4000;
 int speedInterval = 5000;
@@ -16,8 +19,6 @@ int powerInterval = 4000;
 int currentScore = 0;
 int numStars = 20;
 
-int timer;
-
 boolean debug = false;
 boolean gameRunning = false;
 boolean gameOver = false;
@@ -25,16 +26,23 @@ boolean startMenu = true;
 
 void setup() {
   size(500, 800, P2D);
+
+  noSmooth();
+  leftWall = new Walls("leftwall.png", 15, new PVector(0, height/2));
+  rightWall = new Walls("rightwall.png", 15, new PVector(width, height/2));
+
   font = createFont("Arial", 50);
   textFont(font);
   textAlign(CENTER);
 
-  backdrop = loadImage("background2.png");
-  backdrop.resize(488, 2000);
-
   player = new User();
   startScreen = new StartPage();
   endScreen = new GameOverPage();
+  backdrop = new Backdrop(int(random(2)));
+
+  //song
+  fullSong = new SoundFile(this, "Synthwaveattempt.wav");
+  fullSong.jump(21.33);
 
   obs = new ArrayList<Obstacle>();
   stars = new ArrayList<Star>();
@@ -45,13 +53,14 @@ void setup() {
 void draw() {
   background(127);
 
-  //noTint();
-  image(backdrop, width/2, (height/2));
+  backdrop.draw();
+
   int s = second();
   int t = millis();
-  println(t);
+  //println(t);
 
   //currentScore = int(t/10);
+  //adds stars to arraylist
   for (int i = 0; i < numStars; i++) {
     if (stars.size() < 20) {
       if (s % 5 == 0) {   
@@ -60,7 +69,7 @@ void draw() {
     }
   }
 
-  //stars
+  //creates and runs stars
   for (int i = stars.size() - 1; i >= 0; i--) { 
     Star star = stars.get(i);
     star.run();
@@ -73,10 +82,6 @@ void draw() {
     }
   }
 
-  for (int i = 0; i < s; i++) {
-    timer = timer + 1;
-  } 
-
   //create a new obstacle every obstacle interval which decreases as time goes on
   if (t > markTime + obsInterval && gameRunning) {
     obs.add(new Obstacle());
@@ -84,19 +89,26 @@ void draw() {
   }
 
   //speeds up how fast obstacles spawn 
-  for (int i = 0; i < obs.size(); i++) {
-    if (t % 500 == 0 && gameRunning) {
-      if (obsInterval > 300) {
-        obsInterval -= 100;
-      }
 
-      if (currentScore > 150) {
-        obsInterval = 200;
-      }
-
-      //println(obs.get(i).moveSpeed + " " + obsInterval + "," + t);
-    }
+  if (currentScore < 30) {
+    obsInterval = 800;
   }
+  if (currentScore > 30 && currentScore < 60) {
+    obsInterval = 600;
+  }
+  if (currentScore > 60 && currentScore < 150) {
+    obsInterval = 400;
+  }
+  if (currentScore > 150 && currentScore < 230) {
+    obsInterval = 300;
+  }
+  if (currentScore > 230) {
+    obsInterval = 200;
+  }
+
+  println(obsInterval + "," + t);
+
+
 
   for (Obstacle obstacle : obs) {
     obstacle.run();
@@ -135,7 +147,6 @@ void draw() {
     }
   }
 
-
   //removes obstacle once it exits the screen
   for (int i = obs.size()- 1; i >= 0; i--) {
     if (!obs.get(i).inFrame) {
@@ -145,12 +156,19 @@ void draw() {
   }
   //println(obs.size());
 
+
   player.run();
 
-  fill(0);  //wall color
-  rect(0, height/2, 100, height);
-  rect(width, height/2, 100, height);
+  //fill(0);  //wall color
+  //rect(0, height/2, 100, height);
+  //rect(width, height/2, 100, height);
 
+
+  imageMode(CENTER);
+  pushMatrix();
+  leftWall.run();
+  rightWall.run();
+  popMatrix();
 
   if (gameRunning) {
     fill(0); //score color
@@ -186,6 +204,7 @@ void mousePressed() {
     loop();
     gameRunning = true;
     startMenu = false;
+    fullSong.loop(); //starts song from beginning
   }
 
   if (gameOver) {
@@ -203,7 +222,6 @@ void mousePressed() {
     numStars = 20;
     currentScore = 0;
     setup();
-    println(obsInterval);
     loop();
   }
 }

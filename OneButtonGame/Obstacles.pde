@@ -1,4 +1,5 @@
 class Obstacle {
+  PImage wall;
   PVector position;
   float moveSpeed = 15;
   float yMargin = 100;
@@ -11,7 +12,15 @@ class Obstacle {
   boolean collision = false;
   boolean left; 
 
-  Obstacle() {
+  Obstacle() {    
+    wall = loadImage("wall.png");
+    init();
+    rectMode(CENTER);
+  }
+
+  void init() {
+    //determines the x value of each obstacle that is being spawned
+
     val = random(1);
     if (val > 0.5) {
       x = width - 75;
@@ -21,15 +30,17 @@ class Obstacle {
       left = true;
     }
     //println(left);
+
+
     w = int(random(100, 250));
     position = new PVector(x, y);
-    rectMode(CENTER);
   }
 
   //draws obstacle
   void display() {
     fill(0);
     rect(position.x, position.y, w, h, 10);
+    //image(wall, 75, position.y, 200, h);
   }
 
   void move() {

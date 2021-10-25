@@ -16,7 +16,7 @@ class User {
 
   float w = 50;
   float h = 50;
-  float xConstant = 75;
+  float xConstant = 74;
 
   boolean touchesLeftWall;
   boolean touchesRightWall;
@@ -51,6 +51,7 @@ class User {
       fill(255);
     } else {
       fill(255, 0, 0);
+      fullSong.stop();
 
       if (position.y < height) {
         position.y += 50;
