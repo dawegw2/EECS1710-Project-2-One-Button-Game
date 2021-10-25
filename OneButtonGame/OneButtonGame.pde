@@ -1,5 +1,5 @@
 import processing.sound.*;
-SoundFile fullSong;
+SoundFile fullSong, gameOverSound, jump1, jump2;
 
 PFont font;
 User player;
@@ -41,8 +41,13 @@ void setup() {
   backdrop = new Backdrop(int(random(2)));
 
   //song
-  fullSong = new SoundFile(this, "Synthwaveattempt.wav");
+  fullSong = new SoundFile(this, "sound/Synthwaveattempt.wav");
   fullSong.jump(21.33);
+
+  gameOverSound = new SoundFile(this, "sound/gameover2.wav");
+
+  jump1 = new SoundFile(this, "sound/jump1.wav");
+  jump2 = new SoundFile(this, "sound/jump2.wav");
 
   obs = new ArrayList<Obstacle>();
   stars = new ArrayList<Star>();
@@ -59,7 +64,6 @@ void draw() {
   int t = millis();
   //println(t);
 
-  //currentScore = int(t/10);
   //adds stars to arraylist
   for (int i = 0; i < numStars; i++) {
     if (stars.size() < 20) {
@@ -88,8 +92,7 @@ void draw() {
     markTime = t;
   }
 
-  //speeds up how fast obstacles spawn 
-
+  //speeds up how fast obstacles spawn depending on the current score
   if (currentScore < 30) {
     obsInterval = 800;
   }
@@ -107,8 +110,6 @@ void draw() {
   }
 
   println(obsInterval + "," + t);
-
-
 
   for (Obstacle obstacle : obs) {
     obstacle.run();
@@ -159,28 +160,25 @@ void draw() {
 
   player.run();
 
-  //fill(0);  //wall color
-  //rect(0, height/2, 100, height);
-  //rect(width, height/2, 100, height);
-
-
+  //wall parallax
   imageMode(CENTER);
   pushMatrix();
   leftWall.run();
   rightWall.run();
   popMatrix();
 
+  //score counter when game is running
   if (gameRunning) {
     fill(0); //score color
     textSize(50);
     text(currentScore, width/2, 75);
   }
-
+  //start menu
   if (startMenu) {
     startScreen.screen();
     startScreen.display();
   }
-
+  //displays game over screen when player dies
   if (!player.alive) {
     endScreen.display();
   }
@@ -188,8 +186,15 @@ void draw() {
 
 //controls
 void keyPressed() {
-  if (key == ' ') {
-    player.press(); //moves player
+  if (gameRunning) {
+    if (key == ' ') {
+      player.press(); //moves player
+      if (!player.isRight) {
+        jump1.play();
+      } else {
+        jump2.play();
+      }
+    }
   }
   if (key == 'b') {
     debug = true;
@@ -211,7 +216,6 @@ void mousePressed() {
     gameRunning = false;
     gameOver = false;
     startMenu = true;
-    //startScreen.display();
     markTime = 0;
 
     obsInterval = 1000;

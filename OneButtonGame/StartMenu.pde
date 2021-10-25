@@ -24,7 +24,7 @@ class GameOverPage {
   PFont messagefont;
   String message = ("GAME OVER");
   String message2;
-  String message3 = ("Click anywhere to play again");
+  String message3 = ("Click anywhere to return to the main menu");
 
 
   GameOverPage() {
@@ -35,14 +35,14 @@ class GameOverPage {
     //messagefont = createFont("Arial", 25);
     textSize(50);
     text(message, width/2, height/2);
-    
+
     textSize(40);
     message2 = ("Score: " + currentScore);
     text(message2, width/2, height/2 + 50);
-    
-    textSize(20);
+
+    textSize(18);
     text(message3, width/2, height/2 + 100);
-    
+
     gameOver = true;
     noLoop();
   }

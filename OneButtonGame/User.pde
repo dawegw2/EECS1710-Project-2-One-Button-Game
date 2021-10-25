@@ -52,6 +52,7 @@ class User {
     } else {
       fill(255, 0, 0);
       fullSong.stop();
+      gameOverSound.play();
 
       if (position.y < height) {
         position.y += 50;
@@ -112,7 +113,7 @@ class User {
 
   void press() {
     if (!isRight) { // TODO && touchesLeftWall  
-      moveRight();
+      moveRight();      
     } 
     if (isRight) { // TODO && touchesRightWall
       moveLeft();

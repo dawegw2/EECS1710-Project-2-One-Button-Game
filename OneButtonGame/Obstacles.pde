@@ -1,5 +1,4 @@
 class Obstacle {
-  PImage wall;
   PVector position;
   float moveSpeed = 15;
   float yMargin = 100;
@@ -13,7 +12,6 @@ class Obstacle {
   boolean left; 
 
   Obstacle() {    
-    wall = loadImage("wall.png");
     init();
     rectMode(CENTER);
   }
@@ -40,7 +38,6 @@ class Obstacle {
   void display() {
     fill(0);
     rect(position.x, position.y, w, h, 10);
-    //image(wall, 75, position.y, 200, h);
   }
 
   void move() {
