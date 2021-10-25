@@ -172,7 +172,6 @@ void draw() {
   }
   //start menu
   if (startMenu) {
-    startScreen.screen();
     startScreen.display();
   }
   //displays game over screen when player dies
