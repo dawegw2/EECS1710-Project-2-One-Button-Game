@@ -38,6 +38,11 @@ Music and sound effcts:
 - the game over sound effect is a sound I got from a free sample pack that I manipulated using Ableton (I added reverb, a delay, and pitched it down)
 - the jump sound effect is a swoosh and a laser sound, I layered and pitch manipulated in Abelton 
 
+Assets:
+- the background images are from: https://digitalsynopsis.com/design/beautiful-color-ui-gradients-backgrounds/
+- the font is from: https://www.dafont.com/minecraft.font
+- everthything else was made by me
+
 
 References:
 - For the plater trails: https://www.youtube.com/watch?v=OssDengJICg&list=LL&index=1&ab_channel=ChaseStarr
