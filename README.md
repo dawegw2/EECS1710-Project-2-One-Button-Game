@@ -40,9 +40,6 @@ Music and sound effcts:
 
 
 References:
-For the plater trails: 
-https://www.youtube.com/watch?v=OssDengJICg&list=LL&index=1&ab_channel=ChaseStarr
-For the player gif: 
-https://www.youtube.com/watch?v=0cTSfuYPu9U&list=LL&index=2&ab_channel=LenPelletier
-For the continuous moving walls:
-https://github.com/n1ckfg/Parallaxer
+- For the plater trails: https://www.youtube.com/watch?v=OssDengJICg&list=LL&index=1&ab_channel=ChaseStarr
+- For the player gif: https://www.youtube.com/watch?v=0cTSfuYPu9U&list=LL&index=2&ab_channel=LenPelletier
+- For the continuous moving walls: https://github.com/n1ckfg/Parallaxer
