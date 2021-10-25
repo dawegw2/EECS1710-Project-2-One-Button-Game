@@ -36,7 +36,7 @@ Music and sound effcts:
 - imported the processing sound library in order to add music and effects
 - the song that is always playing was a poor attempt of a synthwave song produced by me
 - the game over sound effect is a sound I got from a free sample pack that I manipulated using Ableton (I added reverb, a delay, and pitched it down)
-- the jump sound effect are two sounds I layered and pitch manipulated in Abelton 
+- the jump sound effect is a swoosh and a laser sound, I layered and pitch manipulated in Abelton 
 
 
 References:
