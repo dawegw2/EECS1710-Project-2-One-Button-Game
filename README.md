@@ -22,7 +22,7 @@ Obstacles:
 Player: 
 - player is a simple 50 x 50 square 
 - the gif effect was created using and array list of different images and a for loop that itterates between each image
-- player rotates clockwise when moving to the right and rotates counter clockwise when moving to the left
+- rotate(radians(rot)) makes player rotate clockwise when moving to the right and rotates counter clockwise when moving to the left by the value of rot, which increments in flip until 90 degrees
 - player us drawn between a pushMatrix(); and popMatrix(); so it can rotate
 - Each position of the player is stored in an arrayList of PVectors called history
 - A for loop then itterates throught the arrayList and draws the player image at each position 
