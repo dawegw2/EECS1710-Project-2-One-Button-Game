@@ -38,13 +38,13 @@ void setup() {
   player = new User();
   startScreen = new StartPage();
   endScreen = new GameOverPage();
-  backdrop = new Backdrop(int(random(2)));
+  backdrop = new Backdrop(int(random(3)));
 
   //song
   fullSong = new SoundFile(this, "sound/Synthwaveattempt.wav");
   fullSong.jump(21.33);
 
-  gameOverSound = new SoundFile(this, "sound/gameover2.wav");
+  gameOverSound = new SoundFile(this, "sound/gameover.wav");
 
   jump1 = new SoundFile(this, "sound/jump1.wav");
   jump2 = new SoundFile(this, "sound/jump2.wav");

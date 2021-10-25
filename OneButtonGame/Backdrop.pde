@@ -11,6 +11,9 @@ class Backdrop {
     if (val == 1) {
       backdrop = loadImage("background2.png");
     }
+    if (val == 2) {
+      backdrop = loadImage("background3.png");
+    }
 
     backdrop.resize(488, 2000);
   }
