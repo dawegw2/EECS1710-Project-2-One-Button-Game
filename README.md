@@ -3,6 +3,14 @@
 For my one button game, I made a vertical scrolling jump game
 The main objective of the game is to dodge the obstacles
 
+Sructures and Functions used that weren't leant in class:
+- One thing I decided add into the game that wasn't taught in lectures yet, was audio 
+- To do this, I imported the processing Sound library into my project
+- You can find most of the functions I used from the library in the "OneButtonGame" tab
+- To play the game's song when the game is opened, I used the .jump() function in setup() to jimmediatley jump to the most energetic part of the song 
+- when the mouse button is clicked to play the game, the song restarts from the beginning
+- in my mousePressed() fuction, you can see I used the .loop() feature of the library to constantly loop through the song when the game is being played
+- The other function I used from the library was the basic .play() function, which is used for the jump and gameover sounds (this can be found in the keyPressed() function in the "OneButtonGame" tab and draw() function in the "User" tab)
 
 Controls:
 - SPACEBAR is the only in game mechanic, which moves the player to the left or to the right
